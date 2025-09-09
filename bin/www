@@ -5,8 +5,10 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('tictactoe5-server:server');
+var debug = require('debug')('tictactoe-server:server');
 var http = require('http');
+// 서버 생성
+var game = require('../game');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +22,11 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+/**
+ * Create Socket.io server
+ */
+game(server);
 
 /**
  * Listen on provided port, on all network interfaces.
